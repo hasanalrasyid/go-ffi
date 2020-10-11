@@ -14,9 +14,8 @@ func init() {
 		return errors.New(msg.(string))
 	}
 
-	exports["message"] = func(e_ Any) Any {
-		e, _ := e_.(error)
-		return e.Error()
+	exports["message"] = func(e Any) Any {
+		return e.(error).Error()
 	}
 
 	exports["throwException"] = func(e Any) Any {
@@ -28,8 +27,8 @@ func init() {
 	exports["catchException"] = func(c_ Any) Any {
 		return func(t_ Any) Any {
 			return func() Any {
-				c, _ := c_.(Fn)
-				t, _ := t_.(EffFn)
+				c := c_.(Fn)
+				t := t_.(EffFn)
 				var result Any = nil
 				func() {
 					defer func() {
