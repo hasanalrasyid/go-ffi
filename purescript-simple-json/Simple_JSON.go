@@ -17,5 +17,8 @@ func init() {
 		return result
 	}
 
+	exports["_testMe"] = func(text Any) Any {
+    return 15
+  }
 	exports["_undefined"] = nil
 }
